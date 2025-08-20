@@ -1,0 +1,368 @@
+SQL> select * from customers;
+
+CUSTOMERID NAME                             EMAIL                            PHONE                            ADDRESS                                                                                   
+---------- -------------------------------- -------------------------------- -------------------------------- --------------------------------                                                          
+         1 Anjali Deshmukh                  anjali.d123@gmail.com            9867452344                       14, MG Road, Pune, Maharashtra                                                            
+         2 Ravi Sharma                      ravi.s111@gmail.com              9120557888                       221B, Baner Road, Pune                                                                    
+         3 Aarti Thorat                     aartik14@gmail.com               8805546677                       7, Katraj, Pune                                                                           
+         4 Jayashree Thorat                 jayashree232@gmail.com           7865449900                       32, Tilak Road, Pune                                                                      
+         5 Aarav Sharma                     aaravsharma444@gmail.com         9978675544                       101, MG Road, Mumbai                                                                      
+         6 Priya Patel                      priyapatel34@gmail.com           8805546677                       123, Link Road, Delhi                                                                     
+         7 Rohan Kumar                      rohankumar101@gmail.com          8879055677                       212, Park Street, Bangalore                                                               
+         8 Rohan Kumar                      meeragupta234@gmail.com          8877654566                       7, Hill Road, Kolkata                                                                     
+         9 Isha Gupta                       ishagupta123@gmail.com           7866754433                       2, park street, mumbai                                                                    
+        10 Kabir Gupta                      kabirgupta34@gmail.com           7789665544                       3, Baner Road, Pune                                                                       
+
+10 rows selected.
+
+SQL> select * from accounts;
+
+ ACCOUNTID ACCOUNTTYPE             BALANCE CUSTOMERID                                                                                                                                                   
+---------- -------------------- ---------- ----------                                                                                                                                                   
+      1001 SAVINGS                   28450          1                                                                                                                                                   
+      1002 CURRENT                 49300.9          2                                                                                                                                                   
+      1003 SAVINGS                  230000          2                                                                                                                                                   
+      1004 CURRENT                                  3                                                                                                                                                   
+      1005 CURRENT                   40000          4                                                                                                                                                   
+      1006 SAVINGS                   70000          5                                                                                                                                                   
+      1007 CURRENT                   65000          6                                                                                                                                                   
+      1008 CURRENT                   78000          5                                                                                                                                                   
+      1009 SAVINGS                 4500000          7                                                                                                                                                   
+      1010 SAVINGS                  100000         10                                                                                                                                                   
+
+10 rows selected.
+
+SQL> select * from transactions;
+
+TRANSACTIONID TDATE         AMOUNT TRANSACTIONTYPE       ACCOUNTID                                                                                                                                      
+------------- --------- ---------- -------------------- ----------                                                                                                                                      
+         5001 21-JAN-22      23000 CREDIT                     1001                                                                                                                                      
+         5002 22-JUN-25      50000 DEBIT                      1002                                                                                                                                      
+         5003 07-AUG-21      80000 CREDIT                     1003                                                                                                                                      
+         5004 15-JAN-24      70000 CREDIT                     1002                                                                                                                                      
+         5005 22-JAN-22      89000 CREDIT                     1009                                                                                                                                      
+         5006 06-JAN-22      65000 DEBIT                      1008                                                                                                                                      
+         5007 15-AUG-23      80000 DEBIT                      1007                                                                                                                                      
+         5008 04-AUG-20      45000 CREDIT                     1006                                                                                                                                      
+         5009 05-JUL-13      35000 DEBIT                      1005                                                                                                                                      
+         5010 08-JAN-04      45000 DEBIT                      1010                                                                                                                                      
+
+10 rows selected.
+
+SQL> SELECT ROUND(Balance, 0) AS RoundedBalance FROM Accounts;
+
+ROUNDEDBALANCE                                                                                                                                                                                          
+--------------                                                                                                                                                                                          
+         28450                                                                                                                                                                                          
+         49301                                                                                                                                                                                          
+        230000                                                                                                                                                                                          
+                                                                                                                                                                                                        
+         40000                                                                                                                                                                                          
+         70000                                                                                                                                                                                          
+         65000                                                                                                                                                                                          
+         78000                                                                                                                                                                                          
+       4500000                                                                                                                                                                                          
+        100000                                                                                                                                                                                          
+
+10 rows selected.
+
+SQL> SELECT TO_CHAR(Balance) AS BalanceString FROM Accounts;
+
+BALANCESTRING                                                                                                                                                                                           
+----------------------------------------                                                                                                                                                                
+28450                                                                                                                                                                                                   
+49300.9                                                                                                                                                                                                 
+230000                                                                                                                                                                                                  
+                                                                                                                                                                                                        
+40000                                                                                                                                                                                                   
+70000                                                                                                                                                                                                   
+65000                                                                                                                                                                                                   
+78000                                                                                                                                                                                                   
+4500000                                                                                                                                                                                                 
+100000                                                                                                                                                                                                  
+
+10 rows selected.
+
+SQL> SELECT SUBSTR(Phone, -4) AS Last4Digits FROM Customers;
+
+LAST4DIGITS                                                                                                                                                                                             
+----------------                                                                                                                                                                                        
+2344                                                                                                                                                                                                    
+7888                                                                                                                                                                                                    
+6677                                                                                                                                                                                                    
+9900                                                                                                                                                                                                    
+5544                                                                                                                                                                                                    
+6677                                                                                                                                                                                                    
+5677                                                                                                                                                                                                    
+4566                                                                                                                                                                                                    
+4433                                                                                                                                                                                                    
+5544                                                                                                                                                                                                    
+
+10 rows selected.
+
+SQL> SELECT TO_CHAR(tDate, 'MM-YYYY') AS MonthYear FROM Transactions;
+
+MONTHYE                                                                                                                                                                                                 
+-------                                                                                                                                                                                                 
+01-2022                                                                                                                                                                                                 
+06-2025                                                                                                                                                                                                 
+08-2021                                                                                                                                                                                                 
+01-2024                                                                                                                                                                                                 
+01-2022                                                                                                                                                                                                 
+01-2022                                                                                                                                                                                                 
+08-2023                                                                                                                                                                                                 
+08-2020                                                                                                                                                                                                 
+07-2013                                                                                                                                                                                                 
+01-2004                                                                                                                                                                                                 
+
+10 rows selected.
+
+SQL> SELECT COALESCE(Balance, 0) AS AdjustedBalance FROM Accounts;
+
+ADJUSTEDBALANCE                                                                                                                                                                                         
+---------------                                                                                                                                                                                         
+          28450                                                                                                                                                                                         
+        49300.9                                                                                                                                                                                         
+         230000                                                                                                                                                                                         
+              0                                                                                                                                                                                         
+          40000                                                                                                                                                                                         
+          70000                                                                                                                                                                                         
+          65000                                                                                                                                                                                         
+          78000                                                                                                                                                                                         
+        4500000                                                                                                                                                                                         
+         100000                                                                                                                                                                                         
+
+10 rows selected.
+
+SQL> SELECT CONCAT('Type: ', AccountType) AS PrefixedAccountType FROM Accounts;
+
+PREFIXEDACCOUNTTYPE                                                                                                                                                                                     
+--------------------------                                                                                                                                                                              
+Type: SAVINGS                                                                                                                                                                                           
+Type: CURRENT                                                                                                                                                                                           
+Type: SAVINGS                                                                                                                                                                                           
+Type: CURRENT                                                                                                                                                                                           
+Type: CURRENT                                                                                                                                                                                           
+Type: SAVINGS                                                                                                                                                                                           
+Type: CURRENT                                                                                                                                                                                           
+Type: CURRENT                                                                                                                                                                                           
+Type: SAVINGS                                                                                                                                                                                           
+Type: SAVINGS                                                                                                                                                                                           
+
+10 rows selected.
+
+SQL> SELECT COALESCE(Email, 'Not Provided') AS EmailStatus FROM Customers;
+
+EMAILSTATUS                                                                                                                                                                                             
+----------------------------------------------------------------------------------------------------                                                                                                    
+anjali.d123@gmail.com                                                                                                                                                                                   
+ravi.s111@gmail.com                                                                                                                                                                                     
+aartik14@gmail.com                                                                                                                                                                                      
+jayashree232@gmail.com                                                                                                                                                                                  
+aaravsharma444@gmail.com                                                                                                                                                                                
+priyapatel34@gmail.com                                                                                                                                                                                  
+rohankumar101@gmail.com                                                                                                                                                                                 
+meeragupta234@gmail.com                                                                                                                                                                                 
+ishagupta123@gmail.com                                                                                                                                                                                  
+kabirgupta34@gmail.com                                                                                                                                                                                  
+
+10 rows selected.
+
+SQL> SELECT UPPER(SUBSTR(Name, 1, 1)) || '.' || UPPER(SUBSTR(Name, INSTR(Name, ' ') + 1, 1)) AS Initials FROM Customers;
+
+INITIALS                                                                                                                                                                                                
+---------                                                                                                                                                                                               
+A.D                                                                                                                                                                                                     
+R.S                                                                                                                                                                                                     
+A.T                                                                                                                                                                                                     
+J.T                                                                                                                                                                                                     
+A.S                                                                                                                                                                                                     
+P.P                                                                                                                                                                                                     
+R.K                                                                                                                                                                                                     
+R.K                                                                                                                                                                                                     
+I.G                                                                                                                                                                                                     
+K.G                                                                                                                                                                                                     
+
+10 rows selected.
+
+SQL> SELECT '(' || SUBSTR(Phone, 1, 3) || ') ' || SUBSTR(Phone, 4, 3) || '-' || SUBSTR(Phone, 7, 4) AS FormattedPhone FROM Customers;
+
+FORMATTEDPHONE                                                                                                                                                                                          
+--------------------------------------------                                                                                                                                                            
+(986) 745-2344                                                                                                                                                                                          
+(912) 055-7888                                                                                                                                                                                          
+(880) 554-6677                                                                                                                                                                                          
+(786) 544-9900                                                                                                                                                                                          
+(997) 867-5544                                                                                                                                                                                          
+(880) 554-6677                                                                                                                                                                                          
+(887) 905-5677                                                                                                                                                                                          
+(887) 765-4566                                                                                                                                                                                          
+(786) 675-4433                                                                                                                                                                                          
+(778) 966-5544                                                                                                                                                                                          
+
+10 rows selected.
+
+SQL> SELECT UPPER(TransactionType) AS UppercaseTransactionType FROM Transactions;
+
+UPPERCASETRANSACTION                                                                                                                                                                                    
+--------------------                                                                                                                                                                                    
+CREDIT                                                                                                                                                                                                  
+DEBIT                                                                                                                                                                                                   
+CREDIT                                                                                                                                                                                                  
+CREDIT                                                                                                                                                                                                  
+CREDIT                                                                                                                                                                                                  
+DEBIT                                                                                                                                                                                                   
+DEBIT                                                                                                                                                                                                   
+CREDIT                                                                                                                                                                                                  
+DEBIT                                                                                                                                                                                                   
+DEBIT                                                                                                                                                                                                   
+
+10 rows selected.
+
+SQL> SELECT CustomerID, Name FROM Customers WHERE Phone IS NULL;
+
+no rows selected
+
+SQL> SELECT TO_CHAR(tDate, 'DD-MON-YYYY') AS TransactionDateText FROM Transactions;
+
+TRANSACTIONDATETEXT                                                                                                                                                                                     
+--------------------                                                                                                                                                                                    
+21-JAN-2022                                                                                                                                                                                             
+22-JUN-2025                                                                                                                                                                                             
+07-AUG-2021                                                                                                                                                                                             
+15-JAN-2024                                                                                                                                                                                             
+22-JAN-2022                                                                                                                                                                                             
+06-JAN-2022                                                                                                                                                                                             
+15-AUG-2023                                                                                                                                                                                             
+04-AUG-2020                                                                                                                                                                                             
+05-JUL-2013                                                                                                                                                                                             
+08-JAN-2004                                                                                                                                                                                             
+
+10 rows selected.
+
+SQL> SELECT Balance, Balance * 0.85 AS BalanceInEuros FROM Accounts;
+
+   BALANCE BALANCEINEUROS                                                                                                                                                                               
+---------- --------------                                                                                                                                                                               
+     28450        24182.5                                                                                                                                                                               
+   49300.9      41905.765                                                                                                                                                                               
+    230000         195500                                                                                                                                                                               
+                                                                                                                                                                                                        
+     40000          34000                                                                                                                                                                               
+     70000          59500                                                                                                                                                                               
+     65000          55250                                                                                                                                                                               
+     78000          66300                                                                                                                                                                               
+   4500000        3825000                                                                                                                                                                               
+    100000          85000                                                                                                                                                                               
+
+10 rows selected.
+
+SQL> SELECT INITCAP(Name) AS TitleCaseName FROM Customers;
+
+TITLECASENAME                                                                                                                                                                                           
+----------------------------------------------------------------------------------------------------                                                                                                    
+Anjali Deshmukh                                                                                                                                                                                         
+Ravi Sharma                                                                                                                                                                                             
+Aarti Thorat                                                                                                                                                                                            
+Jayashree Thorat                                                                                                                                                                                        
+Aarav Sharma                                                                                                                                                                                            
+Priya Patel                                                                                                                                                                                             
+Rohan Kumar                                                                                                                                                                                             
+Rohan Kumar                                                                                                                                                                                             
+Isha Gupta                                                                                                                                                                                              
+Kabir Gupta                                                                                                                                                                                             
+
+10 rows selected.
+
+SQL> SELECT TO_CHAR(TO_DATE(Balance, 'J'), 'JSP') AS BalanceInWords FROM Accounts;
+ERROR:
+ORA-01830: date format picture ends before converting entire input string 
+
+
+
+no rows selected
+
+SQL> SELECT TransactionID, ROUND(Amount, -2) AS RoundedAmount FROM Transactions;
+
+TRANSACTIONID ROUNDEDAMOUNT                                                                                                                                                                             
+------------- -------------                                                                                                                                                                             
+         5001         23000                                                                                                                                                                             
+         5002         50000                                                                                                                                                                             
+         5003         80000                                                                                                                                                                             
+         5004         70000                                                                                                                                                                             
+         5005         89000                                                                                                                                                                             
+         5006         65000                                                                                                                                                                             
+         5007         80000                                                                                                                                                                             
+         5008         45000                                                                                                                                                                             
+         5009         35000                                                                                                                                                                             
+         5010         45000                                                                                                                                                                             
+
+10 rows selected.
+
+SQL> SELECT COALESCE(Address, `Unknown') AS AddressStatus FROM Customers;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT COALESCE('Address', `Unknown') AS AddressStatus FROM Customers;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT COALESCE(Address, 'Unknown') AS AddressStatus
+  2  FROM Customers;
+
+ADDRESSSTATUS                                                                                                                                                                                           
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14, MG Road, Pune, Maharashtra                                                                                                                                                                          
+221B, Baner Road, Pune                                                                                                                                                                                  
+7, Katraj, Pune                                                                                                                                                                                         
+32, Tilak Road, Pune                                                                                                                                                                                    
+101, MG Road, Mumbai                                                                                                                                                                                    
+123, Link Road, Delhi                                                                                                                                                                                   
+212, Park Street, Bangalore                                                                                                                                                                             
+7, Hill Road, Kolkata                                                                                                                                                                                   
+2, park street, mumbai                                                                                                                                                                                  
+3, Baner Road, Pune                                                                                                                                                                                     
+
+10 rows selected.
+
+SQL> SELECT TO_CHAR(tDate, 'YYYY-MM-DD"T"HH24:MI:SS') AS ISO8601Date FROM Transactions;
+
+ISO8601DATE                                                                                                                                                                                             
+-------------------                                                                                                                                                                                     
+2022-01-21T00:00:00                                                                                                                                                                                     
+2025-06-22T00:00:00                                                                                                                                                                                     
+2021-08-07T00:00:00                                                                                                                                                                                     
+2024-01-15T00:00:00                                                                                                                                                                                     
+2022-01-22T00:00:00                                                                                                                                                                                     
+2022-01-06T00:00:00                                                                                                                                                                                     
+2023-08-15T00:00:00                                                                                                                                                                                     
+2020-08-04T00:00:00                                                                                                                                                                                     
+2013-07-05T00:00:00                                                                                                                                                                                     
+2004-01-08T00:00:00                                                                                                                                                                                     
+
+10 rows selected.
+
+SQL> SELECT TO_CHAR(Balance) || '%' AS PercentageBalance FROM Accounts;
+
+PERCENTAGEBALANCE                                                                                                                                                                                       
+-----------------------------------------                                                                                                                                                               
+28450%                                                                                                                                                                                                  
+49300.9%                                                                                                                                                                                                
+230000%                                                                                                                                                                                                 
+%                                                                                                                                                                                                       
+40000%                                                                                                                                                                                                  
+70000%                                                                                                                                                                                                  
+65000%                                                                                                                                                                                                  
+78000%                                                                                                                                                                                                  
+4500000%                                                                                                                                                                                                
+100000%                                                                                                                                                                                                 
+
+10 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
