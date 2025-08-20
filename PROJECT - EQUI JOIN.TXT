@@ -1,0 +1,169 @@
+SQL> ED
+SP2-0107: Nothing to save.
+SQL> select * from customers;
+
+CUSTOMERID NAME                             EMAIL                            PHONE           ADDRESS                                                                                                    
+---------- -------------------------------- -------------------------------- --------------- --------------------------------                                                                           
+         1 Anjali Deshmukh                  anjali.d123@gmail.com            9867452344      14, MG Road, Pune, Maharashtra                                                                             
+         2 Ravi Sharma                      ravi.s111@gmail.com              9120557888      221B, Baner Road, Pune                                                                                     
+         3 Aarti Thorat                     aartik14@gmail.com               8805546677      7, Katraj, Pune                                                                                            
+         4 Jayashree Thorat                 jayashree232@gmail.com           7865449900      32, Tilak Road, Pune                                                                                       
+         5 Aarav Sharma                     aaravsharma444@gmail.com         9978675544      101, MG Road, Mumbai                                                                                       
+         6 Priya Patel                      priyapatel34@gmail.com           8805546677      123, Link Road, Delhi                                                                                      
+         7 Rohan Kumar                      rohankumar101@gmail.com          8879055677      212, Park Street, Bangalore                                                                                
+         8 Rohan Kumar                      meeragupta234@gmail.com          8877654566      7, Hill Road, Kolkata                                                                                      
+         9 Isha Gupta                       ishagupta123@gmail.com           7866754433      2, park street, mumbai                                                                                     
+        10 Kabir Gupta                      kabirgupta34@gmail.com           7789665544      3, Baner Road, Pune                                                                                        
+
+10 rows selected.
+
+SQL> select * from accounts;
+
+ ACCOUNTID ACCOUNTTYPE             BALANCE CUSTOMERID                                                                                                                                                   
+---------- -------------------- ---------- ----------                                                                                                                                                   
+      1001 SAVINGS                   28450          1                                                                                                                                                   
+      1002 CURRENT                 49300.9          2                                                                                                                                                   
+      1003 SAVINGS                  230000          2                                                                                                                                                   
+      1004 CURRENT                                  3                                                                                                                                                   
+      1005 CURRENT                   40000          4                                                                                                                                                   
+      1006 SAVINGS                   70000          5                                                                                                                                                   
+      1007 CURRENT                   65000          6                                                                                                                                                   
+      1008 CURRENT                   78000          5                                                                                                                                                   
+      1009 SAVINGS                 4500000          7                                                                                                                                                   
+      1010 SAVINGS                  100000         10                                                                                                                                                   
+
+10 rows selected.
+
+SQL> select * from transactions;
+
+TRANSACTIONID TDATE         AMOUNT TRANSACTIONTYPE       ACCOUNTID                                                                                                                                      
+------------- --------- ---------- -------------------- ----------                                                                                                                                      
+         5001 21-JAN-22      23000 CREDIT                     1001                                                                                                                                      
+         5002 22-JUN-25      50000 DEBIT                      1002                                                                                                                                      
+         5003 07-AUG-21      80000 CREDIT                     1003                                                                                                                                      
+         5004 15-JAN-24      70000 CREDIT                     1002                                                                                                                                      
+         5005 22-JAN-22      89000 CREDIT                     1009                                                                                                                                      
+         5006 06-JAN-22      65000 DEBIT                      1008                                                                                                                                      
+         5007 15-AUG-23      80000 DEBIT                      1007                                                                                                                                      
+         5008 04-AUG-20      45000 CREDIT                     1006                                                                                                                                      
+         5009 05-JUL-13      35000 DEBIT                      1005                                                                                                                                      
+         5010 08-JAN-04      45000 DEBIT                      1010                                                                                                                                      
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, a.AccountID, a.AccountType
+  2  FROM Customers c
+  3  JOIN
+  4* Accounts a ON c.CustomerID = a.CustomerID
+SQL> /
+
+CUSTOMERID NAME                              ACCOUNTID ACCOUNTTYPE                                                                                                                                      
+---------- -------------------------------- ---------- --------------------                                                                                                                             
+         1 Anjali Deshmukh                        1001 SAVINGS                                                                                                                                          
+         2 Ravi Sharma                            1002 CURRENT                                                                                                                                          
+         2 Ravi Sharma                            1003 SAVINGS                                                                                                                                          
+         3 Aarti Thorat                           1004 CURRENT                                                                                                                                          
+         4 Jayashree Thorat                       1005 CURRENT                                                                                                                                          
+         5 Aarav Sharma                           1006 SAVINGS                                                                                                                                          
+         6 Priya Patel                            1007 CURRENT                                                                                                                                          
+         5 Aarav Sharma                           1008 CURRENT                                                                                                                                          
+         7 Rohan Kumar                            1009 SAVINGS                                                                                                                                          
+        10 Kabir Gupta                            1010 SAVINGS                                                                                                                                          
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, a.AccountID, a.AccountType, t.TransactionID, t.TransactionType, t.Amount
+  2  FROM Customers c, Accounts a, Transactions t
+  3  WHERE c.CustomerID = a.CustomerID
+  4  AND a.AccountID = t.AccountID
+  5  AND
+  6  a.AccountType = 'CURRENT'
+  7* AND t.TransactionType = 'DEBIT'
+SQL> /
+
+CUSTOMERID NAME                              ACCOUNTID ACCOUNTTYPE          TRANSACTIONID TRANSACTIONTYPE          AMOUNT                                                                               
+---------- -------------------------------- ---------- -------------------- ------------- -------------------- ----------                                                                               
+         2 Ravi Sharma                            1002 CURRENT                       5002 DEBIT                     50000                                                                               
+         4 Jayashree Thorat                       1005 CURRENT                       5009 DEBIT                     35000                                                                               
+         5 Aarav Sharma                           1008 CURRENT                       5006 DEBIT                     65000                                                                               
+         6 Priya Patel                            1007 CURRENT                       5007 DEBIT                     80000                                                                               
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT Customers.Name, Transactions.TransactionID, Transactions.Amount, Transactions.tDate FROM Customers, Accounts, Transactions
+  2  WHERE Customers.CustomerID = Accounts.CustomerID
+  3  AND
+  4  Accounts.AccountID = Transactions.AccountID
+  5  AND
+  6* Transactions.Amount = Accounts.Balance
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT Customers.CustomerID, Customers.Name, Customers.Email, Accounts.AccountID, Accounts.AccountType, Accounts.Balance, Transactions.tDate
+  2  FROM Customers, Accounts, Transactions
+  3  WHERE Customers.CustomerID = Accounts.CustomerID
+  4  AND
+  5  Accounts.AccountID = Transactions.AccountID
+  6  AND
+  7* TRUNC(Accounts.CreatedDate) = TRUNC(Transactions.tDate)
+SQL> /
+TRUNC(Accounts.CreatedDate) = TRUNC(Transactions.tDate)
+      *
+ERROR at line 7:
+ORA-00904: "ACCOUNTS"."CREATEDDATE": invalid identifier 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT Customers.CustomerID, Customers.Name, Customers.Email, Accounts.AccountID, Accounts.AccountType, Accounts.Balance, Transactions.tDate
+  2  FROM Customers, Accounts, Transactions
+  3  WHERE Customers.CustomerID = Accounts.CustomerID
+  4  AND
+  5* Accounts.AccountID = Transactions.AccountID
+SQL> /
+
+CUSTOMERID NAME                             EMAIL                             ACCOUNTID ACCOUNTTYPE             BALANCE TDATE                                                                           
+---------- -------------------------------- -------------------------------- ---------- -------------------- ---------- ---------                                                                       
+         1 Anjali Deshmukh                  anjali.d123@gmail.com                  1001 SAVINGS                   28450 21-JAN-22                                                                       
+         2 Ravi Sharma                      ravi.s111@gmail.com                    1002 CURRENT                 49300.9 22-JUN-25                                                                       
+         2 Ravi Sharma                      ravi.s111@gmail.com                    1003 SAVINGS                  230000 07-AUG-21                                                                       
+         2 Ravi Sharma                      ravi.s111@gmail.com                    1002 CURRENT                 49300.9 15-JAN-24                                                                       
+         7 Rohan Kumar                      rohankumar101@gmail.com                1009 SAVINGS                 4500000 22-JAN-22                                                                       
+         5 Aarav Sharma                     aaravsharma444@gmail.com               1008 CURRENT                   78000 06-JAN-22                                                                       
+         6 Priya Patel                      priyapatel34@gmail.com                 1007 CURRENT                   65000 15-AUG-23                                                                       
+         5 Aarav Sharma                     aaravsharma444@gmail.com               1006 SAVINGS                   70000 04-AUG-20                                                                       
+         4 Jayashree Thorat                 jayashree232@gmail.com                 1005 CURRENT                   40000 05-JUL-13                                                                       
+        10 Kabir Gupta                      kabirgupta34@gmail.com                 1010 SAVINGS                  100000 08-JAN-04                                                                       
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, c.Email, t.TransactionID,t.Amount,t.tDate
+  2  FROM Customers c, Accounts a, Transactions t
+  3  WHERE
+  4  c.CustomerID = a.CustomerID
+  5  AND a.AccountID = t.AccountID
+  6* AND t.Amount = a.Balance
+SQL> /
+
+no rows selected
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF;
