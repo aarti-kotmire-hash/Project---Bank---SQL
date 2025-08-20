@@ -1,0 +1,110 @@
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> column format customerid 999999
+SP2-0158: unknown COLUMN option "customerid"
+SQL> column  customerid format 999999
+SQL> column  name format A32
+SQL> column  EMAIL format A32
+SQL> column  ADDRESS format A32
+SQL> column  PHONENUMBER format A32
+SQL> SELECT * FROM CUSTOMERS;
+
+CUSTOMERID NAME                             EMAIL                            PHONE           ADDRESS                                                                                                    
+---------- -------------------------------- -------------------------------- --------------- --------------------------------                                                                           
+         1 Anjali Deshmukh                  anjali.d123@gmail.com            9867452344      14, MG Road, Pune, Maharashtra                                                                             
+         2 Ravi Sharma                      ravi.s111@gmail.com              9120557888      221B, Baner Road, Pune                                                                                     
+         3 Aarti Thorat                     aartik14@gmail.com               8805546677      7, Katraj, Pune                                                                                            
+         4 Jayashree Thorat                 jayashree232@gmail.com           7865449900      32, Tilak Road, Pune                                                                                       
+         5 Aarav Sharma                     aaravsharma444@gmail.com         9978675544      101, MG Road, Mumbai                                                                                       
+         6 Priya Patel                      priyapatel34@gmail.com           8805546677      123, Link Road, Delhi                                                                                      
+         7 Rohan Kumar                      rohankumar101@gmail.com          8879055677      212, Park Street, Bangalore                                                                                
+         8 Rohan Kumar                      meeragupta234@gmail.com          8877654566      7, Hill Road, Kolkata                                                                                      
+         9 Isha Gupta                       ishagupta123@gmail.com           7866754433      2, park street, mumbai                                                                                     
+        10 Kabir Gupta                      kabirgupta34@gmail.com           7789665544      3, Baner Road, Pune                                                                                        
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, a.AccountID, a.AccountType, a.Balance
+  2* FROM Customers c INNER JOIN Accounts a ON c.CustomerID = a.CustomerID
+SQL> /
+
+CUSTOMERID NAME                              ACCOUNTID ACCOUNTTYPE             BALANCE                                                                                                                  
+---------- -------------------------------- ---------- -------------------- ----------                                                                                                                  
+         1 Anjali Deshmukh                        1001 SAVINGS                   28450                                                                                                                  
+         2 Ravi Sharma                            1002 CURRENT                 49300.9                                                                                                                  
+         2 Ravi Sharma                            1003 SAVINGS                  230000                                                                                                                  
+         3 Aarti Thorat                           1004 CURRENT                                                                                                                                          
+         4 Jayashree Thorat                       1005 CURRENT                   40000                                                                                                                  
+         5 Aarav Sharma                           1006 SAVINGS                   70000                                                                                                                  
+         6 Priya Patel                            1007 CURRENT                   65000                                                                                                                  
+         5 Aarav Sharma                           1008 CURRENT                   78000                                                                                                                  
+         7 Rohan Kumar                            1009 SAVINGS                 4500000                                                                                                                  
+        10 Kabir Gupta                            1010 SAVINGS                  100000                                                                                                                  
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, t.TransactionID, t.TransactionType, t.Amount, t.tDate
+  2  FROM Customers c INNER JOIN Accounts a ON c.CustomerID = a.CustomerID
+  3* INNER JOIN Transactions t ON a.AccountID = t.AccountID
+SQL> /
+
+CUSTOMERID NAME                             TRANSACTIONID TRANSACTIONTYPE          AMOUNT TDATE                                                                                                         
+---------- -------------------------------- ------------- -------------------- ---------- ---------                                                                                                     
+         1 Anjali Deshmukh                           5001 CREDIT                    23000 21-JAN-22                                                                                                     
+         2 Ravi Sharma                               5002 DEBIT                     50000 22-JUN-25                                                                                                     
+         2 Ravi Sharma                               5003 CREDIT                    80000 07-AUG-21                                                                                                     
+         2 Ravi Sharma                               5004 CREDIT                    70000 15-JAN-24                                                                                                     
+         7 Rohan Kumar                               5005 CREDIT                    89000 22-JAN-22                                                                                                     
+         5 Aarav Sharma                              5006 DEBIT                     65000 06-JAN-22                                                                                                     
+         6 Priya Patel                               5007 DEBIT                     80000 15-AUG-23                                                                                                     
+         5 Aarav Sharma                              5008 CREDIT                    45000 04-AUG-20                                                                                                     
+         4 Jayashree Thorat                          5009 DEBIT                     35000 05-JUL-13                                                                                                     
+        10 Kabir Gupta                               5010 DEBIT                     45000 08-JAN-04                                                                                                     
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, a.AccountID, a.AccountType, a.Balance
+  2  FROM Customers c
+  3  INNER JOIN Accounts a ON c.CustomerID = a.CustomerID
+  4  WHERE a.Balance > (
+  5  SELECT AVG(Balance)
+  6  FROM Accounts
+  7  WHERE Balance > 1000
+  8* )
+SQL> /
+
+CUSTOMERID NAME                              ACCOUNTID ACCOUNTTYPE             BALANCE                                                                                                                  
+---------- -------------------------------- ---------- -------------------- ----------                                                                                                                  
+         7 Rohan Kumar                            1009 SAVINGS                 4500000                                                                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT c.CustomerID, c.Name, a.AccountID, a.AccountType, a.Balance
+  2  FROM Customers c
+  3  INNER JOIN Accounts a ON c.CustomerID = a.CustomerID
+  4  WHERE a.Balance > (
+  5  SELECT AVG(Balance)
+  6  FROM Accounts
+  7  WHERE Balance > 1000
+  8* )
+SQL> /
+
+CUSTOMERID NAME                              ACCOUNTID ACCOUNTTYPE             BALANCE                                                                                                                  
+---------- -------------------------------- ---------- -------------------- ----------                                                                                                                  
+         7 Rohan Kumar                            1009 SAVINGS                 4500000                                                                                                                  
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF;
