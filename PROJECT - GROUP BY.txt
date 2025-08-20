@@ -1,0 +1,680 @@
+SQL> set linesize 200
+SQL> set pagesize 200
+SQL> select * from customers;
+
+CUSTOMERID NAME                                                                                                                                                                                         
+---------- ----------------------------------------------------------------------------------------------------                                                                                         
+EMAIL                                                                                                PHONE                                                                                              
+---------------------------------------------------------------------------------------------------- ---------------                                                                                    
+ADDRESS                                                                                                                                                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         1 Anjali Deshmukh                                                                                                                                                                              
+anjali.d123@gmail.com                                                                                9867452344                                                                                         
+14, MG Road, Pune, Maharashtra                                                                                                                                                                          
+                                                                                                                                                                                                        
+         2 Ravi Sharma                                                                                                                                                                                  
+ravi.s111@gmail.com                                                                                  9120557888                                                                                         
+221B, Baner Road, Pune                                                                                                                                                                                  
+                                                                                                                                                                                                        
+         3 Aarti Thorat                                                                                                                                                                                 
+aartik14@gmail.com                                                                                   8805546677                                                                                         
+7, Katraj, Pune                                                                                                                                                                                         
+                                                                                                                                                                                                        
+         4 Jayashree Thorat                                                                                                                                                                             
+jayashree232@gmail.com                                                                               7865449900                                                                                         
+32, Tilak Road, Pune                                                                                                                                                                                    
+                                                                                                                                                                                                        
+         5 Aarav Sharma                                                                                                                                                                                 
+aaravsharma444@gmail.com                                                                             9978675544                                                                                         
+101, MG Road, Mumbai                                                                                                                                                                                    
+                                                                                                                                                                                                        
+         6 Priya Patel                                                                                                                                                                                  
+priyapatel34@gmail.com                                                                               8805546677                                                                                         
+123, Link Road, Delhi                                                                                                                                                                                   
+                                                                                                                                                                                                        
+         7 Rohan Kumar                                                                                                                                                                                  
+rohankumar101@gmail.com                                                                              8879055677                                                                                         
+212, Park Street, Bangalore                                                                                                                                                                             
+                                                                                                                                                                                                        
+         8 Rohan Kumar                                                                                                                                                                                  
+meeragupta234@gmail.com                                                                              8877654566                                                                                         
+7, Hill Road, Kolkata                                                                                                                                                                                   
+                                                                                                                                                                                                        
+         9 Isha Gupta                                                                                                                                                                                   
+ishagupta123@gmail.com                                                                               7866754433                                                                                         
+2, park street, mumbai                                                                                                                                                                                  
+                                                                                                                                                                                                        
+        10 Kabir Gupta                                                                                                                                                                                  
+kabirgupta34@gmail.com                                                                               7789665544                                                                                         
+3, Baner Road, Pune                                                                                                                                                                                     
+                                                                                                                                                                                                        
+
+10 rows selected.
+
+SQL> column format name A32
+SP2-0158: unknown COLUMN option "name"
+SQL> column CUSTOMERID format 999999
+SQL> column NAME format A32
+SQL> column EMAIL format A32
+SQL> column PHONE format A32
+SQL> column ADDRESS format A32
+SQL> select * from customers;
+
+CUSTOMERID NAME                             EMAIL                            PHONE                            ADDRESS                                                                                   
+---------- -------------------------------- -------------------------------- -------------------------------- --------------------------------                                                          
+         1 Anjali Deshmukh                  anjali.d123@gmail.com            9867452344                       14, MG Road, Pune, Maharashtra                                                            
+         2 Ravi Sharma                      ravi.s111@gmail.com              9120557888                       221B, Baner Road, Pune                                                                    
+         3 Aarti Thorat                     aartik14@gmail.com               8805546677                       7, Katraj, Pune                                                                           
+         4 Jayashree Thorat                 jayashree232@gmail.com           7865449900                       32, Tilak Road, Pune                                                                      
+         5 Aarav Sharma                     aaravsharma444@gmail.com         9978675544                       101, MG Road, Mumbai                                                                      
+         6 Priya Patel                      priyapatel34@gmail.com           8805546677                       123, Link Road, Delhi                                                                     
+         7 Rohan Kumar                      rohankumar101@gmail.com          8879055677                       212, Park Street, Bangalore                                                               
+         8 Rohan Kumar                      meeragupta234@gmail.com          8877654566                       7, Hill Road, Kolkata                                                                     
+         9 Isha Gupta                       ishagupta123@gmail.com           7866754433                       2, park street, mumbai                                                                    
+        10 Kabir Gupta                      kabirgupta34@gmail.com           7789665544                       3, Baner Road, Pune                                                                       
+
+10 rows selected.
+
+SQL> select * from ACCOUNTS;
+
+ ACCOUNTID ACCOUNTTYPE             BALANCE CUSTOMERID                                                                                                                                                   
+---------- -------------------- ---------- ----------                                                                                                                                                   
+      1001 SAVINGS                   28450          1                                                                                                                                                   
+      1002 CURRENT                 49300.9          2                                                                                                                                                   
+      1003 SAVINGS                  230000          2                                                                                                                                                   
+      1004 CURRENT                                  3                                                                                                                                                   
+      1005 CURRENT                   40000          4                                                                                                                                                   
+      1006 SAVINGS                   70000          5                                                                                                                                                   
+      1007 CURRENT                   65000          6                                                                                                                                                   
+      1008 CURRENT                   78000          5                                                                                                                                                   
+      1009 SAVINGS                 4500000          7                                                                                                                                                   
+      1010 SAVINGS                  100000         10                                                                                                                                                   
+
+10 rows selected.
+
+SQL> select * from TRANSACTIONS;
+
+TRANSACTIONID TDATE         AMOUNT TRANSACTIONTYPE       ACCOUNTID                                                                                                                                      
+------------- --------- ---------- -------------------- ----------                                                                                                                                      
+         5001 21-JAN-22      23000 CREDIT                     1001                                                                                                                                      
+         5002 22-JUN-25      50000 DEBIT                      1002                                                                                                                                      
+         5003 07-AUG-21      80000 CREDIT                     1003                                                                                                                                      
+         5004 15-JAN-24      70000 CREDIT                     1002                                                                                                                                      
+         5005 22-JAN-22      89000 CREDIT                     1009                                                                                                                                      
+         5006 06-JAN-22      65000 DEBIT                      1008                                                                                                                                      
+         5007 15-AUG-23      80000 DEBIT                      1007                                                                                                                                      
+         5008 04-AUG-20      45000 CREDIT                     1006                                                                                                                                      
+         5009 05-JUL-13      35000 DEBIT                      1005                                                                                                                                      
+         5010 08-JAN-04      45000 DEBIT                      1010                                                                                                                                      
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CustomerID, COUNT(AccountID) AS TotalAccounts
+  2* FROM Accounts GROUP BY CustomerID
+SQL> /
+
+CUSTOMERID TOTALACCOUNTS                                                                                                                                                                                
+---------- -------------                                                                                                                                                                                
+         1             1                                                                                                                                                                                
+         6             1                                                                                                                                                                                
+         2             2                                                                                                                                                                                
+         4             1                                                                                                                                                                                
+         5             2                                                                                                                                                                                
+         3             1                                                                                                                                                                                
+         7             1                                                                                                                                                                                
+        10             1                                                                                                                                                                                
+
+8 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AccountType,
+  2  SUM(Balance) AS TotalBalance
+  3* FROM Accounts GROUP BY AccountType
+SQL> /
+
+ACCOUNTTYPE          TOTALBALANCE                                                                                                                                                                       
+-------------------- ------------                                                                                                                                                                       
+SAVINGS                   4928450                                                                                                                                                                       
+CURRENT                  232300.9                                                                                                                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT accountid,
+  2  AVG(balance) As AverageBalance
+  3  FROM accounts
+  4* GROUP BY accountid
+SQL> /
+
+ ACCOUNTID AVERAGEBALANCE                                                                                                                                                                               
+---------- --------------                                                                                                                                                                               
+      1001          28450                                                                                                                                                                               
+      1002        49300.9                                                                                                                                                                               
+      1003         230000                                                                                                                                                                               
+      1004                                                                                                                                                                                              
+      1005          40000                                                                                                                                                                               
+      1006          70000                                                                                                                                                                               
+      1007          65000                                                                                                                                                                               
+      1008          78000                                                                                                                                                                               
+      1009        4500000                                                                                                                                                                               
+      1010         100000                                                                                                                                                                               
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT CustomerID, COUNT(AccountID) AS NumOfAccounts
+  2  FROM Accounts
+  3  GROUP BY CustomerID
+  4* HAVING COUNT(AccountID) > 1
+SQL> /
+
+CUSTOMERID NUMOFACCOUNTS                                                                                                                                                                                
+---------- -------------                                                                                                                                                                                
+         2             2                                                                                                                                                                                
+         5             2                                                                                                                                                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, SUM(Amount) AS TotalAmount
+  2  FROM Transactions
+  3* GROUP BY AccountID
+SQL> /
+
+ ACCOUNTID TOTALAMOUNT                                                                                                                                                                                  
+---------- -----------                                                                                                                                                                                  
+      1003       80000                                                                                                                                                                                  
+      1009       89000                                                                                                                                                                                  
+      1006       45000                                                                                                                                                                                  
+      1001       23000                                                                                                                                                                                  
+      1002      120000                                                                                                                                                                                  
+      1007       80000                                                                                                                                                                                  
+      1010       45000                                                                                                                                                                                  
+      1008       65000                                                                                                                                                                                  
+      1005       35000                                                                                                                                                                                  
+
+9 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, AVG(Amount) AS AverageTransactionAmount
+  2  FROM Transactions
+  3* GROUP BY AccountID
+SQL> /
+
+ ACCOUNTID AVERAGETRANSACTIONAMOUNT                                                                                                                                                                     
+---------- ------------------------                                                                                                                                                                     
+      1003                    80000                                                                                                                                                                     
+      1009                    89000                                                                                                                                                                     
+      1006                    45000                                                                                                                                                                     
+      1001                    23000                                                                                                                                                                     
+      1002                    60000                                                                                                                                                                     
+      1007                    80000                                                                                                                                                                     
+      1010                    45000                                                                                                                                                                     
+      1008                    65000                                                                                                                                                                     
+      1005                    35000                                                                                                                                                                     
+
+9 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, COUNT(TransactionID) AS NumDeposits
+  2  FROM Transactions
+  3  WHERE TransactionType = 'Deposit'
+  4* GROUP BY AccountID
+SQL> /
+
+no rows selected
+
+SQL> SELECT * FROM TRANSACTIONS;
+
+TRANSACTIONID TDATE         AMOUNT TRANSACTIONTYPE       ACCOUNTID                                                                                                                                      
+------------- --------- ---------- -------------------- ----------                                                                                                                                      
+         5001 21-JAN-22      23000 CREDIT                     1001                                                                                                                                      
+         5002 22-JUN-25      50000 DEBIT                      1002                                                                                                                                      
+         5003 07-AUG-21      80000 CREDIT                     1003                                                                                                                                      
+         5004 15-JAN-24      70000 CREDIT                     1002                                                                                                                                      
+         5005 22-JAN-22      89000 CREDIT                     1009                                                                                                                                      
+         5006 06-JAN-22      65000 DEBIT                      1008                                                                                                                                      
+         5007 15-AUG-23      80000 DEBIT                      1007                                                                                                                                      
+         5008 04-AUG-20      45000 CREDIT                     1006                                                                                                                                      
+         5009 05-JUL-13      35000 DEBIT                      1005                                                                                                                                      
+         5010 08-JAN-04      45000 DEBIT                      1010                                                                                                                                      
+
+10 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, COUNT(TransactionID) AS NumDeposits
+  2   FROM Transactions
+  3     WHERE TransactionType = 'DEBIT'
+  4*    GROUP BY AccountID
+  5  /
+
+ ACCOUNTID NUMDEPOSITS                                                                                                                                                                                  
+---------- -----------                                                                                                                                                                                  
+      1002           1                                                                                                                                                                                  
+      1007           1                                                                                                                                                                                  
+      1010           1                                                                                                                                                                                  
+      1008           1                                                                                                                                                                                  
+      1005           1                                                                                                                                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, MAX(TransactionAmount) AS MaxTransactionAmount
+  2  FROM Transactions
+  3* GROUP BY AccountID
+SQL> /
+SELECT AccountID, MAX(TransactionAmount) AS MaxTransactionAmount
+                      *
+ERROR at line 1:
+ORA-00904: "TRANSACTIONAMOUNT": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, MAX(Amount) AS MaxTransactionAmount
+  2  FROM Transactions
+  3* GROUP BY AccountID
+SQL> /
+
+ ACCOUNTID MAXTRANSACTIONAMOUNT                                                                                                                                                                         
+---------- --------------------                                                                                                                                                                         
+      1003                80000                                                                                                                                                                         
+      1009                89000                                                                                                                                                                         
+      1006                45000                                                                                                                                                                         
+      1001                23000                                                                                                                                                                         
+      1002                70000                                                                                                                                                                         
+      1007                80000                                                                                                                                                                         
+      1010                45000                                                                                                                                                                         
+      1008                65000                                                                                                                                                                         
+      1005                35000                                                                                                                                                                         
+
+9 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT AccountType, MIN(Balance) AS MinBalance
+  2  FROM Accounts
+  3* GROUP BY AccountType
+SQL> /
+
+ACCOUNTTYPE          MINBALANCE                                                                                                                                                                         
+-------------------- ----------                                                                                                                                                                         
+SAVINGS                   28450                                                                                                                                                                         
+CURRENT                   40000                                                                                                                                                                         
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT CustomerID
+  2  FROM Accounts
+  3  GROUP BY CustomerID
+  4* HAVING AVG(Balance) > 5000
+SQL> /
+
+CUSTOMERID                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         1                                                                                                                                                                                              
+         6                                                                                                                                                                                              
+         2                                                                                                                                                                                              
+         4                                                                                                                                                                                              
+         5                                                                                                                                                                                              
+         7                                                                                                                                                                                              
+        10                                                                                                                                                                                              
+
+7 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accounttype, COUNT(transactionid) AS total_transactions
+  2  FROM transactions
+  3* GROUP BY accounttype
+SQL> /
+GROUP BY accounttype
+         *
+ERROR at line 3:
+ORA-00904: "ACCOUNTTYPE": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT transactiontype, COUNT(transactionid) AS total_transactions
+  2  FROM transactions
+  3* GROUP BY transactiontype
+SQL> /
+
+TRANSACTIONTYPE      TOTAL_TRANSACTIONS                                                                                                                                                                 
+-------------------- ------------------                                                                                                                                                                 
+CREDIT                                5                                                                                                                                                                 
+DEBIT                                 5                                                                                                                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT tdate, SUM(amount) AS totalamount
+  2  FROM transactions
+  3  GROUP BY tdate
+  4* ORDER BY tdate
+SQL> /
+
+TDATE     TOTALAMOUNT                                                                                                                                                                                   
+--------- -----------                                                                                                                                                                                   
+08-JAN-04       45000                                                                                                                                                                                   
+05-JUL-13       35000                                                                                                                                                                                   
+04-AUG-20       45000                                                                                                                                                                                   
+07-AUG-21       80000                                                                                                                                                                                   
+06-JAN-22       65000                                                                                                                                                                                   
+21-JAN-22       23000                                                                                                                                                                                   
+22-JAN-22       89000                                                                                                                                                                                   
+15-AUG-23       80000                                                                                                                                                                                   
+15-JAN-24       70000                                                                                                                                                                                   
+22-JUN-25       50000                                                                                                                                                                                   
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT customer_id ,AVG(balance) AS average_balance
+  2  FROM accounts
+  3  GROUP BY customer_id
+  4* HAVING COUNT(*) > 1
+  5  /
+GROUP BY customer_id
+         *
+ERROR at line 3:
+ORA-00904: "CUSTOMER_ID": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT customer_id ,AVG(balance) AS average_balance
+  2  FROM accounts
+  3  GROUP BY customer_id
+  4* HAVING COUNT(*) > 1
+SQL> /
+GROUP BY customer_id
+         *
+ERROR at line 3:
+ORA-00904: "CUSTOMER_ID": invalid identifier 
+
+
+SQL> select * from accounts;
+
+ ACCOUNTID ACCOUNTTYPE             BALANCE CUSTOMERID                                                                                                                                                   
+---------- -------------------- ---------- ----------                                                                                                                                                   
+      1001 SAVINGS                   28450          1                                                                                                                                                   
+      1002 CURRENT                 49300.9          2                                                                                                                                                   
+      1003 SAVINGS                  230000          2                                                                                                                                                   
+      1004 CURRENT                                  3                                                                                                                                                   
+      1005 CURRENT                   40000          4                                                                                                                                                   
+      1006 SAVINGS                   70000          5                                                                                                                                                   
+      1007 CURRENT                   65000          6                                                                                                                                                   
+      1008 CURRENT                   78000          5                                                                                                                                                   
+      1009 SAVINGS                 4500000          7                                                                                                                                                   
+      1010 SAVINGS                  100000         10                                                                                                                                                   
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT customerid ,AVG(balance) AS average_balance
+  2  FROM accounts
+  3  GROUP BY customerid
+  4* HAVING COUNT(*) > 1
+SQL> /
+
+CUSTOMERID AVERAGE_BALANCE                                                                                                                                                                              
+---------- ---------------                                                                                                                                                                              
+         2       139650.45                                                                                                                                                                              
+         5           74000                                                                                                                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accountid, balance
+  2  FROM accounts
+  3* WHERE balance > (SELECT AVG(balance) FROM accounts)
+SQL> /
+
+ ACCOUNTID    BALANCE                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+      1009    4500000                                                                                                                                                                                   
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accountid,
+  2  COUNT(*) AS total_withdrawals
+  3  FROM transactions
+  4  WHERE transactiontype = 'withdrawal'
+  5* GROUP BY accountid
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accountid,
+  2  COUNT(*) AS total_withdrawals
+  3  FROM transactions
+  4  WHERE transactiontype = 'CREDIT'
+  5* GROUP BY accountid
+SQL> /
+
+ ACCOUNTID TOTAL_WITHDRAWALS                                                                                                                                                                            
+---------- -----------------                                                                                                                                                                            
+      1003                 1                                                                                                                                                                            
+      1009                 1                                                                                                                                                                            
+      1006                 1                                                                                                                                                                            
+      1001                 1                                                                                                                                                                            
+      1002                 1                                                                                                                                                                            
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accountid, SUM(amount) AS total_amount
+  2  FROM transactions
+  3  GROUP BY accountid
+  4* HAVING SUM(amount) > 10000
+SQL> /
+
+ ACCOUNTID TOTAL_AMOUNT                                                                                                                                                                                 
+---------- ------------                                                                                                                                                                                 
+      1003        80000                                                                                                                                                                                 
+      1009        89000                                                                                                                                                                                 
+      1006        45000                                                                                                                                                                                 
+      1001        23000                                                                                                                                                                                 
+      1002       120000                                                                                                                                                                                 
+      1007        80000                                                                                                                                                                                 
+      1010        45000                                                                                                                                                                                 
+      1008        65000                                                                                                                                                                                 
+      1005        35000                                                                                                                                                                                 
+
+9 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT customerid, MAX(balance) AS max_balance
+  2  FROM accounts
+  3  GROUP BY customerid
+  4* HAVING COUNT(accountid) > 1/
+SQL> 
+SQL> /
+HAVING COUNT(accountid) > 1/
+                           *
+ERROR at line 4:
+ORA-00936: missing expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT customerid, MAX(balance) AS max_balance
+  2  FROM accounts
+  3  GROUP BY customerid
+  4* HAVING COUNT(accountid) > 1
+  5  /
+
+CUSTOMERID MAX_BALANCE                                                                                                                                                                                  
+---------- -----------                                                                                                                                                                                  
+         2      230000                                                                                                                                                                                  
+         5       78000                                                                                                                                                                                  
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT AccountID, COUNT(*) AS NumberOfAccounts
+  2  FROM Accounts
+  3* WHERE balance < 1000 GROUP BY AccountID
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT CustomerID, COUNT(*) AS TransactionCount
+  2  FROM Transactions
+  3  GROUP BY CustomerID
+  4* HAVING COUNT(*) > 5
+SQL> /
+GROUP BY CustomerID
+         *
+ERROR at line 3:
+ORA-00904: "CUSTOMERID": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT Customerid, COUNT(*) AS TransactionCount
+  2  FROM Transactions
+  3  GROUP BY Customerid
+  4* HAVING COUNT(*) > 5
+SQL> /
+GROUP BY Customerid
+         *
+ERROR at line 3:
+ORA-00904: "CUSTOMERID": invalid identifier 
+
+
+SQL> select * from transactions;
+
+TRANSACTIONID TDATE         AMOUNT TRANSACTIONTYPE       ACCOUNTID                                                                                                                                      
+------------- --------- ---------- -------------------- ----------                                                                                                                                      
+         5001 21-JAN-22      23000 CREDIT                     1001                                                                                                                                      
+         5002 22-JUN-25      50000 DEBIT                      1002                                                                                                                                      
+         5003 07-AUG-21      80000 CREDIT                     1003                                                                                                                                      
+         5004 15-JAN-24      70000 CREDIT                     1002                                                                                                                                      
+         5005 22-JAN-22      89000 CREDIT                     1009                                                                                                                                      
+         5006 06-JAN-22      65000 DEBIT                      1008                                                                                                                                      
+         5007 15-AUG-23      80000 DEBIT                      1007                                                                                                                                      
+         5008 04-AUG-20      45000 CREDIT                     1006                                                                                                                                      
+         5009 05-JUL-13      35000 DEBIT                      1005                                                                                                                                      
+         5010 08-JAN-04      45000 DEBIT                      1010                                                                                                                                      
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accountID, COUNT(*) AS TransactionCount
+  2  FROM Transactions
+  3  GROUP BY accountID
+  4* HAVING COUNT(*) > 5
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT TransactionType,SUM(Amount) AS TotalAmount,
+  2  AVG(Amount) AS AverageAmount
+  3  FROM Transactions
+  4  WHERE
+  5  TransactionType IN ('Deposit', 'Withdrawal')
+  6  GROUP BY
+  7* TransactionType
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT TransactionType,SUM(Amount) AS TotalAmount,
+  2  AVG(Amount) AS AverageAmount
+  3  FROM Transactions
+  4  WHERE
+  5  TransactionType IN ('Debit', 'credit')
+  6  GROUP BY
+  7* TransactionType
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT tDate, COUNT(*) AS TotalTransactions
+  2  FROM Transactions
+  3  GROUP BY tDate
+  4* HAVING COUNT(*) > 5
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT CustomerID, SUM(Amount) AS TotalDeposits
+  2  FROM Transactions
+  3  WHERE TransactionType = 'Deposit'
+  4  GROUP BY CustomerID
+  5* HAVING SUM(Amount) > 2000
+SQL> /
+GROUP BY CustomerID
+         *
+ERROR at line 4:
+ORA-00904: "CUSTOMERID": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT accountID, SUM(Amount) AS TotalDeposits
+  2  FROM Transactions
+  3  WHERE TransactionType = 'Deposit'
+  4  GROUP BY accountID
+  5* HAVING SUM(Amount) > 2000
+SQL> /
+
+no rows selected
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
